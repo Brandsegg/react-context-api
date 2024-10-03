@@ -9,7 +9,10 @@ export const someContext = createContext();
 
 function App() {
     const [tweets, setTweets] = useState(defaultTweets)
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme] = useState(() => {
+        const initialTheme = localStorage.getItem('theme')
+        return initialTheme ? initialTheme : 'light'
+    })
 
     useEffect(() => {
         theme === 'light'
